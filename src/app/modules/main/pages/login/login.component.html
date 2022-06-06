@@ -1,0 +1,76 @@
+<div class="div-card">
+  <mat-card class="login-card">
+    <mat-card-title>Projeto App</mat-card-title>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="formLogin">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Ex. talent@email.com"
+          />
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            "
+          >
+            Por favor digite um e-mail.
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email é <strong>obrigatório.</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Senha"
+          />
+        </mat-form-field>
+
+        <mat-slide-toggle
+          (click)="newUserToggle()"
+          >Novo usuário(a)?
+        </mat-slide-toggle>
+
+        <mat-form-field
+          *ngIf="isChecked"
+          class="example-full-width"
+          appearance="fill"
+        >
+          <mat-label>Nome completo</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Nome completo"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+
+    <mat-card-actions class="login-button">
+      <button mat-raised-button color="primary" style="width: 100%">
+        Entrar
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        style="width: 100%"
+        [disabled]="isDisabled"
+      >
+        Cadastrar
+      </button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>
