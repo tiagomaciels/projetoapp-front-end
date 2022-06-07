@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,29 +26,26 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   newUserToggle() {
     this.isChecked = !this.isChecked;
     this.isDisabled = !this.isDisabled;
   }
 
-  // signIn() {
-  //   this.submitted = true;
-  //   // if (this.form.invalid) return;
-  //   this.spinnerService.show();
-  //   this.authService
-  //     .auth(this.formLogin.value)
-  //     .pipe(
-  //       takeUntil(this.destroy$),
-  //       finalize(() => this.spinnerService.hide())
-  //     )
-  //     .subscribe((resp) => {
-  //       this.authService.onAuthenticate(resp);
-  //       this.navigation.hide();
-  //       this.modalCupom();
-  //     });
-  // }
+  signIn() {
+    // this.submitted = true;
+    // if (this.form.invalid) return;
+    // this.spinnerService.show();
+    this.authService
+      .auth(this.formLogin.value)
+      .subscribe(resp => {
+        console.log(resp)
+        this.authService.onAuthenticate(resp);
+      });
+
+  }
 
   signUp() {
     // this.submitted = true;
@@ -58,19 +55,24 @@ export class LoginComponent implements OnInit {
       password: this.formLogin.value.password,
     };
 
-    console.log(data);
     // this.spinnerService.show();
 
     this.authService.post(data).subscribe((resp) => {
-      Swal.fire(
-        `Parabéns ${data.name}!`,
-        'Seu cadastro foi realizado com sucesso!',
-        'success'
-      );
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Cadastro realizado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      })
     });
 
     // (error: HttpErrorResponse) => {
-    //   Swal.fire(`Atenção!`, 'Ocorreu um erro ao cadastrar!', 'error');
+    //   Swal.fire(
+    //     `Atenção!`,
+    //     'Ocorreu um erro ao cadastrar!',
+    //     'error'
+    //   );
     // };
   }
 }

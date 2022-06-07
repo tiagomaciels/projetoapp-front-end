@@ -7,10 +7,10 @@ export const environment = {
   localStore: {
     token: 'projetoapp.token',
     lang: 'projetoapp.lang',
-    user: 'projetoapp.user'
+    user: 'projetoapp.user',
+    affirmationApi: 'projetoapp.affirmationApi'
   },
   apiUrl: 'http://localhost:3000',
-
 };
 
 /*

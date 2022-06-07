@@ -1,0 +1,39 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.affirmation-toolbar {
+  height: 20px;
+  justify-content: center;
+}
+
+.affirmations-span {
+  font-size: medium;
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.copy-icon {
+  display: flex;
+  position: relative;
+
+  transform: scale(0.8);
+}
+
+.sidenav-container {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(105, 105, 105);
+}
+
+.sidenav-menu {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+

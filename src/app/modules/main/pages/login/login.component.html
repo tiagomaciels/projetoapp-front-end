@@ -34,8 +34,7 @@
           />
         </mat-form-field>
 
-        <mat-slide-toggle
-          (click)="newUserToggle()"
+        <mat-slide-toggle (click)="newUserToggle()"
           >Novo usuário(a)?
         </mat-slide-toggle>
 
@@ -57,7 +56,13 @@
     <mat-divider inset></mat-divider>
 
     <mat-card-actions class="login-button">
-      <button mat-raised-button color="primary" style="width: 100%">
+      <button
+        mat-raised-button
+        [disabled]="!isDisabled"
+        color="primary"
+        style="width: 100%"
+        (click)="signIn()"
+      >
         Entrar
       </button>
       <button
