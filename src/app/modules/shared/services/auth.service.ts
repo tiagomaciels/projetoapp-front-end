@@ -4,13 +4,13 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public url = `${environment.apiUrl}`;
-
   private _sessionUser!: SessionUser;
   sessionUserEvent = new EventEmitter<SessionUser>();
 
@@ -33,6 +33,11 @@ export class AuthService {
 
   onAuthenticate(resp: any, currentRoute?: string) {
     this.storeSession(resp);
+    Swal.fire({
+      title: `${this._sessionUser.affirmation}`,
+      showCloseButton: true,
+      showConfirmButton: false,
+    });
     if (currentRoute) {
       return;
     }

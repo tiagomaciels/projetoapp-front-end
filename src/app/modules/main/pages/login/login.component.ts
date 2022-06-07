@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+  user$ = this.authService.sessionUser;
   isChecked = false;
   isDisabled = true;
 
@@ -41,7 +42,6 @@ export class LoginComponent implements OnInit {
     this.authService
       .auth(this.formLogin.value)
       .subscribe(resp => {
-        console.log(resp)
         this.authService.onAuthenticate(resp);
       });
 
