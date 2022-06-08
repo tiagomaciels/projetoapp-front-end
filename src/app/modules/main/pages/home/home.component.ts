@@ -20,16 +20,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  copyAffirmation(affirmation: string) {
-    this.appService.copyToClipboard(affirmation);
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Afirmação copiada!',
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  }
+  // copyAffirmation(affirmation: string) {
+  //   this.appService.copyToClipboard(affirmation);
+  //   Swal.fire({
+  //     position: 'top-end',
+  //     icon: 'success',
+  //     title: 'Afirmação copiada!',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //   });
+  // }
 
   signout() {
     this.authService.removeSession();

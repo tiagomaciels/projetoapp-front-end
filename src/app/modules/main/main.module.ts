@@ -10,6 +10,7 @@ import { BooksComponent } from './pages/books/books.component';
 import { PokemonsComponent } from './pages/pokemons/pokemons.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ModalBooksComponent } from './pages/books/modal-books/modal-books.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HomeComponent,
     BooksComponent,
     PokemonsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ModalBooksComponent
   ],
   imports: [
     CommonModule,
