@@ -65,8 +65,6 @@ export class AuthService {
 
   removeUser() {
     localStorage.removeItem(environment.localStore.user);
-    // this._sessionUser = null;
-    // this.sessionUserEvent.next(null);
   }
 
   storeAccessToken(token: string) {

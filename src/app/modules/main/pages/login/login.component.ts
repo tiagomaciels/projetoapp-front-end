@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -36,8 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    // this.submitted = true;
-    // if (this.form.invalid) return;
     // this.spinnerService.show();
     this.authService
       .auth(this.formLogin.value)
@@ -48,7 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   signUp() {
-    // this.submitted = true;
     const data = {
       name: this.formLogin.value.name,
       email: this.formLogin.value.email,
@@ -66,13 +62,5 @@ export class LoginComponent implements OnInit {
         timer: 1500
       })
     });
-
-    // (error: HttpErrorResponse) => {
-    //   Swal.fire(
-    //     `Atenção!`,
-    //     'Ocorreu um erro ao cadastrar!',
-    //     'error'
-    //   );
-    // };
   }
 }

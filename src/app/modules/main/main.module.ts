@@ -35,7 +35,8 @@ import { ModalBooksComponent } from './pages/books/modal-books/modal-books.compo
     HomeComponent,
     BooksComponent,
     PokemonsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ModalBooksComponent
   ]
 })
 export class MainModule { }

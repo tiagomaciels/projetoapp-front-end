@@ -1,20 +1,47 @@
 <h1 mat-dialog-title>Olá {{ user$.name }}</h1>
-<div mat-dialog-content class="container">
+<div mat-dialog-content>
   <p>Informações do livro:</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Título</mat-label>
-    <input matInput />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Descrição</mat-label>
-    <input matInput />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Data de lançamento</mat-label>
-    <input matInput />
-  </mat-form-field>
+  <form [formGroup]="formBooks" class="container">
+    <mat-form-field appearance="fill">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="description" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Data de lançamento</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="release_date"
+        required
+      />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
 </div>
+
 <div mat-dialog-actions class="button-div">
-  <button mat-raised-button cdkFocusInitial color="primary" style="width: 40%">Salvar</button>
-  <button mat-raised-button [mat-dialog-close]="" color="warn" style="width: 40%">Cancelar</button>
+  <button
+    mat-raised-button
+    cdkFocusInitial
+    color="primary"
+    style="width: 40%"
+    (click)="saveBook()"
+    [disabled]="!formBooks.valid"
+  >
+    Salvar
+  </button>
+  <button
+    mat-raised-button
+    [mat-dialog-close]=""
+    color="warn"
+    style="width: 40%"
+  >
+    Cancelar
+  </button>
 </div>
