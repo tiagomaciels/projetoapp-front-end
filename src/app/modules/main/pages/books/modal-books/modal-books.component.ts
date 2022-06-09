@@ -16,6 +16,7 @@ export class ModalBooksComponent implements OnInit {
   @Input() book: any;
   user$ = this.authService.sessionUser;
   formBooks!: FormGroup;
+  // formControl = new FormControl('');
 
   constructor(
     private authService: AuthService,
@@ -36,8 +37,6 @@ export class ModalBooksComponent implements OnInit {
       release_date: [this.book.release_date, [Validators.required]],
     });
   }
-
-  formControl = new FormControl('');
 
   saveBook() {
     const data = this.formBooks.value;

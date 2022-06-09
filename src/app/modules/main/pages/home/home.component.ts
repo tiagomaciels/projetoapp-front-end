@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.sessionUserEvent.subscribe((resp) => (this.user$ = resp));
+  }
 
   // copyAffirmation(affirmation: string) {
   //   this.appService.copyToClipboard(affirmation);

@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     // this.spinnerService.show();
 
     this.authService.post(data).subscribe((resp) => {
+      this.signIn();
       Swal.fire({
         position: 'top-end',
         icon: 'success',
