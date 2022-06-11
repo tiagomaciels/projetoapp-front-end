@@ -1,1 +1,29 @@
-<p>pokemons works!</p>
+<div class="div-search">
+  <mat-form-field appearance="standard">
+    <mat-label>Pesquise pelo nome(em inglês) ou número</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Pikachu"
+
+      (keyup.enter)="getPokemon($event)"
+      #inputFilter
+    />
+  </mat-form-field>
+</div>
+
+<div class="div-poke-card">
+  <mat-card class="poke-card" *ngIf="pokemon">
+    <mat-card-header>
+      <mat-card-title mat-card-avatar>#{{ pokemon?.id }}</mat-card-title>
+      <mat-card-title>NAME: {{ pokemon?.name?.toUpperCase() }}</mat-card-title>
+      <mat-card-subtitle
+        >TYPE: {{ pokemon?.type?.toUpperCase() }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <img mat-card-image [src]="pokemon?.img" alt="foto do pokemon" />
+    <mat-card-footer>
+      <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

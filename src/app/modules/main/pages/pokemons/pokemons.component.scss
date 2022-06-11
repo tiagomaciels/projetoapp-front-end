@@ -1,0 +1,29 @@
+.div-search {
+  display: flex;
+  position: relative;
+  justify-content: center;
+
+  mat-form-field {
+    width: 300px;
+  }
+}
+
+.div-poke-card {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.poke-card {
+
+  max-width: 300px;
+}
+
+.id-div1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+}
