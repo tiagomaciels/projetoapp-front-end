@@ -16,7 +16,6 @@ import { ModalBooksComponent } from './modal-books/modal-books.component';
 })
 export class BooksComponent implements AfterViewInit {
   displayedColumns: string[] = ['menu', 'title', 'description', 'release_date'];
-  // books!: MatTableDataSource<Books>;
 
   books: Books[] = [];
   dataBooks = new MatTableDataSource<Books>(this.books);

@@ -10,7 +10,7 @@ export const environment = {
     user: 'projetoapp.user',
     affirmationApi: 'projetoapp.affirmationApi'
   },
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'http://localhost:3000'
 };
 
 /*

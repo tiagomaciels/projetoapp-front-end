@@ -22,17 +22,6 @@ export class HomeComponent implements OnInit {
     this.authService.sessionUserEvent.subscribe((resp) => (this.user$ = resp));
   }
 
-  // copyAffirmation(affirmation: string) {
-  //   this.appService.copyToClipboard(affirmation);
-  //   Swal.fire({
-  //     position: 'top-end',
-  //     icon: 'success',
-  //     title: 'Afirmação copiada!',
-  //     showConfirmButton: false,
-  //     timer: 1500,
-  //   });
-  // }
-
   signout() {
     this.authService.removeSession();
     this.router.navigate(['login']).then(() => {

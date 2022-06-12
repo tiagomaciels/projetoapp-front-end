@@ -9,6 +9,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
@@ -30,18 +31,59 @@ export class AppHttpInterceptor implements HttpInterceptor {
         () => {},
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
-            if (
-              err.status === 401 ||
-              err.status === 403 ||
-              err.status === 404
-            ) {
-              // this.alertErrorService.toastrErrorAlert('Email e senha não existem ou não coincidem.','');
-              setTimeout('window.location.reload()', 3000);
+
+            if (err.status === 406) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: `E-mail e senha são obrigatórios!`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
             }
-            if (err.status === 401 || err.status === 403) {
-              // this.alertErrorService.toastrErrorAlert('Sua sessão expirou. Faça o login novamente.', err.status.toString());
-              setTimeout('window.location.reload()', 3000);
-              // this.usersService.logout();
+
+            if (err.status === 404) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: `Não encontrado`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+            }
+
+            if (err.status === 403) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: `E-mail ou senha inválido`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+            }
+
+            if (err.status === 400) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: `Este e-mail já está sendo utilizado`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+            }
+
+            if (err.status === 401) {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: `Não autorizado`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
             } else {
               return;
             }
@@ -51,70 +93,3 @@ export class AppHttpInterceptor implements HttpInterceptor {
     );
   }
 }
-
-// let newRequest = request.headers.has('Authorization')
-//   ? request.clone({})
-//   : request.clone({
-//       setHeaders: {
-//         Authorization: `Bearer ${this.authService.accessToken}`,
-//       },
-//     });
-// return next.handle(newRequest)
-
-// .pipe(
-//   tap(
-//     (event: HttpEvent<any>) => {},
-//     (error: HttpErrorResponse) => {
-//       this.zone.run(() => {
-//         if (error instanceof HttpErrorResponse) {
-//           let response = <HttpErrorResponse>error;
-
-//           if (response.status == 401) {
-//             if (
-//               response.error &&
-//               response.error.errors &&
-//               response.error.errors.length > 0
-//             ) {
-//               this.resolveErrors(response.error);
-//             } else {
-//               this.authService.removeUser();
-//             }
-//           } else if (response.status == 404) {
-//             this.resolveErrors({}, [
-//               {
-//                 value: 'Recurso não encontrado',
-//               },
-//             ]);
-//           } else if (response.status == 422) {
-//             this.resolveErrors({}, [
-//               {
-//                 value: 'Entidade não processável',
-//               },
-//             ]);
-//           } else {
-//             this.resolveErrors(response);
-//           }
-//         } else {
-//           this.resolveErrors(error);
-//         }
-//       });
-//     }
-//   )
-// );
-// }
-
-// private resolveErrors(response: any, refErrors: any[] = []) {
-//   let errors: any[] = response.error
-//     ? response.error.errors || []
-//     : response.errors || [];
-//   errors = errors.concat(refErrors);
-//   if (errors.length === 0) {
-//     errors.push({
-//       value: 'Ocorreu um erro desconhecido!',
-//     });
-//   }
-
-//   let msg = `<ul>${errors.map((e) => `<li>${e}</li>`).join('')}</ul>`;
-//   // this.toastrService.error(msg);
-// }
-// }

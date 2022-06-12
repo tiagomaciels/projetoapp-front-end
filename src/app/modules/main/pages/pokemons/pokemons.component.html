@@ -12,7 +12,7 @@
 </div>
 
 <div class="div-poke-card">
-  <mat-card class="poke-card" *ngIf="pokemon">
+  <mat-card class="poke-card" *ngIf="pokemon?.id">
     <mat-card-header>
       <mat-card-title mat-card-avatar>#{{ pokemon?.id }}</mat-card-title>
       <mat-card-title>NAME: {{ pokemon?.name?.toUpperCase() }}</mat-card-title>

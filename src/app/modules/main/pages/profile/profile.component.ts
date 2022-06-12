@@ -65,20 +65,6 @@ export class ProfileComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500,
       });
-
-      // Swal.fire({
-      //   title: 'Você deseja excluir sua conta?',
-      //   showDenyButton: true,
-      //   confirmButtonText: 'Sim',
-      //   denyButtonText: `Não`,
-      // }).then((result) => {
-      //   /* Read more about isConfirmed, isDenied below */
-      //   if (result.isConfirmed) {
-      //     Swal.fire('Conta excluída!', '', 'success')
-      //   } else if (result.isDenied) {
-      //     Swal.fire('A conta NÃO foi excluída', '', 'info')
-      //   }
-      // })
     })
   }
 }

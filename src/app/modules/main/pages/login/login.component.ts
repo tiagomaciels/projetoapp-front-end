@@ -19,15 +19,15 @@ export class LoginComponent implements OnInit {
   isDisabled = true;
 
   formLogin = new FormGroup({
-    name: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required)
   });
+
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   newUserToggle() {
     this.isChecked = !this.isChecked;
@@ -35,13 +35,9 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-    // this.spinnerService.show();
-    this.authService
-      .auth(this.formLogin.value)
-      .subscribe(resp => {
-        this.authService.onAuthenticate(resp);
-      });
-
+    this.authService.auth(this.formLogin.value).subscribe((resp) => {
+      this.authService.onAuthenticate(resp);
+    });
   }
 
   signUp() {
@@ -51,8 +47,6 @@ export class LoginComponent implements OnInit {
       password: this.formLogin.value.password,
     };
 
-    // this.spinnerService.show();
-
     this.authService.post(data).subscribe((resp) => {
       this.signIn();
       Swal.fire({
@@ -60,8 +54,8 @@ export class LoginComponent implements OnInit {
         icon: 'success',
         title: 'Cadastro realizado com sucesso!',
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
     });
   }
 }

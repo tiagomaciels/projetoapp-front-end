@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PokemonService {
   public readonly url = `${environment.apiUrl}/pokemon`;
+
   constructor(private http: HttpClient) {}
 
   get(pokemon: string): Observable<any> {

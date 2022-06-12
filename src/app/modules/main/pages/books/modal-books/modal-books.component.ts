@@ -16,7 +16,6 @@ export class ModalBooksComponent implements OnInit {
   @Input() book: any;
   user$ = this.authService.sessionUser;
   formBooks!: FormGroup;
-  // formControl = new FormControl('');
 
   constructor(
     private authService: AuthService,

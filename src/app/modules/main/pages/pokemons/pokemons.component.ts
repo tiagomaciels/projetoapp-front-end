@@ -11,29 +11,24 @@ import { PokemonService } from './../../../shared/services/pokemon.service';
   styleUrls: ['./pokemons.component.scss'],
 })
 export class PokemonsComponent implements OnInit {
-  pokemon!: Pokemon;
+  pokemon: Pokemon = {id: '', name: '', type: '', img: ''};
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {}
 
   getPokemon(event: Event) {
-    try {
-      const filterPokemon = (
-        event.target as HTMLInputElement
-      ).value.toLowerCase();
-      this.pokemonService.get(filterPokemon).subscribe((resp) => {
-        this.pokemon = resp;
-      });
-    } catch (error) {
-      console.log(error)
-      Swal.fire({
-        position: 'top-end',
-        icon: 'info',
-        title: `Pokemon não encontrado`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
+    this.pokemon = {id: '', name: '', type: '', img: ''};
+    const filterPokemon = (
+      event.target as HTMLInputElement
+    ).value.toLowerCase();
+
+    this.pokemonService.get(filterPokemon).subscribe((resp) => {
+      this.pokemon = resp;
+    });
+  }
+
+  clearFilter() {
+
   }
 }
