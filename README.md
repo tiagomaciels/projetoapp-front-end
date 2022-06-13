@@ -3,7 +3,7 @@
 
 Com CRUD de usuário e livros, consultas no Affirmations Api e PokeAPI pelo projetoapp-back-end.
 
-* Utilizando Angular Material, Sweet Alert, Json Web Token, Bcrypt, Reactive forms, RxJs, observables, pipes, etc...
+* Utilizando Angular Material, Sweet Alert, Reactive forms, RxJs, observables, pipes, etc...
 
 ## Instalação
 * Clonar o projeto
