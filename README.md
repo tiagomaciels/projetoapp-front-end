@@ -1,5 +1,5 @@
-# projetoapp-back-end
-## Projeto front-end em Angular sendo alimentado pelo projeto https://github.com/tiagomaciels/projetoapp-back-end
+# projetoapp-front-end
+## Projeto front-end em Angular sendo alimentado pelo projeto back-end: https://github.com/tiagomaciels/projetoapp-back-end
 
 Com CRUD de usuário e livros, consultas no Affirmations Api e PokeAPI pelo projetoapp-back-end.
 
