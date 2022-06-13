@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { Injectable, NgZone } from '@angular/core';
 import {
@@ -13,7 +14,11 @@ import Swal from 'sweetalert2';
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private zone: NgZone) {}
+  constructor(
+    private authService: AuthService,
+    private zone: NgZone,
+    private router: Router
+  ) {}
 
   intercept(
     req: HttpRequest<unknown>,
@@ -31,7 +36,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
         () => {},
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
-
             if (err.status === 406) {
               Swal.fire({
                 position: 'top-end',
@@ -40,7 +44,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
                 showConfirmButton: false,
                 timer: 1500,
               });
-
             }
 
             if (err.status === 404) {
@@ -51,7 +54,16 @@ export class AppHttpInterceptor implements HttpInterceptor {
                 showConfirmButton: false,
                 timer: 1500,
               });
+            }
 
+            if (err.status === 404 && this.router.url === '/login') {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'info',
+                title: `Esta conta não existe`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
             }
 
             if (err.status === 403) {
@@ -62,7 +74,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
                 showConfirmButton: false,
                 timer: 1500,
               });
-
             }
 
             if (err.status === 400) {
@@ -73,7 +84,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
                 showConfirmButton: false,
                 timer: 1500,
               });
-
             }
 
             if (err.status === 401) {

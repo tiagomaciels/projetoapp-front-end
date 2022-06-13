@@ -57,16 +57,30 @@ export class BooksComponent implements AfterViewInit {
   }
 
   deleteBook(id: string) {
-    this.booksService.delete(id).subscribe(() => {
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: `Livro excluído com sucesso`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      this.ngAfterViewInit();
+    Swal.fire({
+      title: 'Tem certeza que deseja excluir este livro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#9C27B0',
+      cancelButtonColor: '#F44336',
+      confirmButtonText: 'Sim, excluir este livro!',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.booksService.delete(id).subscribe(() => {
+          this.ngAfterViewInit();
+        });
+
+        Swal.fire({
+          position: 'top-end',
+          title: 'Livro excluído!',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     });
+
   }
 
   openModalBooks(book: Books): void {
